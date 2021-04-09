@@ -29,9 +29,9 @@ function createSnake() {
 
 function startGame() {
     if (snake[0].x > (31 * box) && direction == 'right') snake[0].x = 0
-    if (snake[0].x < 0 && direction == 'left') snake[0].x = 32 * box
+    if (snake[0].x < 0 && direction == 'left') snake[0].x = 31 * box
+    if (snake[0].y < 0 && direction == 'up') snake[0].y = 31 * box
     if (snake[0].y > (31 * box) && direction == 'down') snake[0].y = 0
-    if (snake[0].y < 0 && direction == 'up') snake[0].y = 32 * box
 
     for (let i = 1; i < snake.length; i++) {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
@@ -80,7 +80,7 @@ function drawFood() {
 }
 
 // events
-let game = setInterval(startGame, 100)
+let game = setInterval(startGame, 90)
 document.addEventListener('keydown', update)
 
 
