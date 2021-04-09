@@ -38,8 +38,7 @@ h1 {
     justify-content: space-evenly;
 }
 
-canvas {
-    /* box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef6b, inset 0 0 10px rgba(0, 0, 0, 0.411), 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1); */
+p {
+    margin: 10px;
+    font-size: 20px;
 }

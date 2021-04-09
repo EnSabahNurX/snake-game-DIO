@@ -1,5 +1,7 @@
 // variables
 let canvas = document.querySelector('#snake')
+const time = document.querySelector('#time')
+const score = document.querySelector('#score')
 let context = canvas.getContext('2d')
 let box = 16
 let direction = 'right'
@@ -12,7 +14,10 @@ let food = {
     x: Math.floor((Math.random() * 31) + 1) * box,
     y: Math.floor((Math.random() * 31) + 1) * box
 }
-
+let count = 0
+let scoreCount = 0
+let lastGrab = 0
+let fruits = 0
 
 // functions
 function createBG() {
@@ -28,6 +33,7 @@ function createSnake() {
 }
 
 function startGame() {
+    score.innerHTML = scoreCount
     if (snake[0].x > (31 * box) && direction == 'right') snake[0].x = 0
     if (snake[0].x < 0 && direction == 'left') snake[0].x = 31 * box
     if (snake[0].y < 0 && direction == 'up') snake[0].y = 31 * box
@@ -36,7 +42,7 @@ function startGame() {
     for (let i = 1; i < snake.length; i++) {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             clearInterval(game)
-
+            clearInterval(clock)
         }
     }
 
@@ -64,6 +70,8 @@ function startGame() {
     } else {
         food.x = Math.floor((Math.random() * 31) + 1) * box
         food.y = Math.floor((Math.random() * 31) + 1) * box
+        fruits++
+        scoreCount += Math.floor(100 / (count - lastGrab) + 1.3 ** fruits)
     }
 
     let newHead = {
@@ -82,8 +90,6 @@ function update(e) {
 
 function drawFood() {
     context.fillStyle = 'red'
-    // context.fillRect(food.x, food.y, box, box)
-
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 3; j++) {
             context.beginPath();
@@ -97,6 +103,12 @@ function drawFood() {
     }
 }
 
+function incremmentCloc() {
+    time.innerHTML = count
+    count++
+}
+
 // events
 let game = setInterval(startGame, 90)
 document.addEventListener('keydown', update)
+let clock = setInterval(incremmentCloc, 1000)
