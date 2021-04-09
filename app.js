@@ -21,7 +21,7 @@ function createBG() {
 }
 
 function createSnake() {
-    for (i = 0; i < snake.length; i++) {
+    for (let i = 0; i < snake.length; i++) {
         context.fillStyle = 'green'
         context.fillRect(snake[i].x, snake[i].y, box, box)
     }
@@ -32,6 +32,13 @@ function startGame() {
     if (snake[0].x < 0 && direction == 'left') snake[0].x = 32 * box
     if (snake[0].y > (31 * box) && direction == 'down') snake[0].y = 0
     if (snake[0].y < 0 && direction == 'up') snake[0].y = 32 * box
+
+    for (let i = 1; i < snake.length; i++) {
+        if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+            clearInterval(game)
+            alert('Game over ! :(')
+        }
+    }
 
     createBG()
     createSnake()
@@ -79,3 +86,4 @@ document.addEventListener('keydown', update)
 
 // to do
 // chock food and snake when random appear
+// animation on food and gead
