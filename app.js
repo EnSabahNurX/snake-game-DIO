@@ -36,7 +36,13 @@ function startGame() {
     for (let i = 1; i < snake.length; i++) {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             clearInterval(game)
-            alert('Game over ! :(')
+
+        }
+    }
+
+    for (let i = 1; i < snake.length; i++) {
+        if (food.x == snake[i].x && food.y == snake[i].y) {
+            drawFood
         }
     }
 
@@ -76,14 +82,21 @@ function update(e) {
 
 function drawFood() {
     context.fillStyle = 'red'
-    context.fillRect(food.x, food.y, box, box)
+    // context.fillRect(food.x, food.y, box, box)
+
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 3; j++) {
+            context.beginPath();
+            let radius = 8; // Arc radius
+            let startAngle = 0; // Starting point on circle
+            let endAngle = Math.PI + (Math.PI * j) / 2; // End point on circle
+            let counterclockwise = i % 2 !== 0; // clockwise or counterclockwise
+            context.arc(food.x + 8, food.y + 8, radius, startAngle, endAngle, counterclockwise);
+            context.fill();
+        }
+    }
 }
 
 // events
 let game = setInterval(startGame, 90)
 document.addEventListener('keydown', update)
-
-
-// to do
-// chock food and snake when random appear
-// animation on food and gead

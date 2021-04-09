@@ -12,7 +12,26 @@
 </head>
 
 <body>
-    <canvas id="snake" width="512" height="512"></canvas>
+    <header>
+        <div class="title">
+            <h1>Snake Game</h1>
+        </div>
+    </header>
+    <div class="display">
+        <canvas id="snake" width="512" height="512"></canvas>
+        <div class="placar">
+            <div>
+                <p>Score</p>
+                <p id="score">0</p>
+                <p id="message"></p>
+                <button id="try-again">Try again!</button>
+            </div>
+            <div class="battle-log">
+                <p>Score Log</p>
+                <select id="battle-log"></select>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
