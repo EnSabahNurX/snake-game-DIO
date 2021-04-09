@@ -65,7 +65,7 @@ function startGame() {
 
     for (let i = 1; i < snake.length; i++) {
         if (food.x == snake[i].x && food.y == snake[i].y) {
-            drawFood
+            drawFood()
         }
     }
 
