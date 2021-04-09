@@ -42,3 +42,24 @@ p {
     margin: 10px;
     font-size: 20px;
 }
+
+#message {
+    visibility: hidden;
+}
+
+#try-again {
+    margin: 1%;
+    width: 80px;
+    height: 80px;
+    font-size: 15px;
+    background-color: rgb(54, 54, 54);
+    color: rgb(216, 216, 216);
+}
+
+#battle-log {
+    visibility: hidden;
+    background-color: rgb(54, 54, 54);
+    color: rgb(216, 216, 216);
+    margin: 1%;
+    text-decoration: none;
+}

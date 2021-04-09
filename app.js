@@ -2,6 +2,9 @@
 let canvas = document.querySelector('#snake')
 const time = document.querySelector('#time')
 const score = document.querySelector('#score')
+const message = document.querySelector('#message')
+const tab = document.querySelector('#battle-log')
+const tryAgain = document.querySelector('#try-again')
 let context = canvas.getContext('2d')
 let box = 16
 let direction = 'right'
@@ -18,6 +21,12 @@ let count = 0
 let scoreCount = 0
 let lastGrab = 0
 let fruits = 0
+tab.innerHTML = ''
+tab.size = 0
+let game
+let clock
+let lastdirection = 'right'
+
 
 // functions
 function createBG() {
@@ -43,6 +52,14 @@ function startGame() {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             clearInterval(game)
             clearInterval(clock)
+            message.innerHTML = 'Game over!'
+            message.style.visibility = 'visible'
+            tab.style.visibility = 'visible'
+            tab.size++
+            let item = document.createElement('option')
+            item.text = `${scoreCount} points!`
+            tab.appendChild(item)
+            tryAgain.addEventListener('click', clear)
         }
     }
 
@@ -86,6 +103,7 @@ function update(e) {
     if (e.keyCode == 39 && direction != 'left') direction = 'right'
     if (e.keyCode == 38 && direction != 'down') direction = 'up'
     if (e.keyCode == 40 && direction != 'up') direction = 'down'
+
 }
 
 function drawFood() {
@@ -108,7 +126,25 @@ function incremmentCloc() {
     count++
 }
 
+function clear() {
+    scoreCount = 0
+    count = 0
+    score.innerHTML = '0'
+    message.innerHTML = ''
+    snake = []
+    snake[0] = {
+        x: 8 * box,
+        y: 8 * box
+    }
+    start()
+}
+
+
 // events
-let game = setInterval(startGame, 90)
+function start() {
+    game = setInterval(startGame, 90)
+    clock = setInterval(incremmentCloc, 1000)
+}
+
+start()
 document.addEventListener('keydown', update)
-let clock = setInterval(incremmentCloc, 1000)
